@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+<servlet>
+<servlet-name>AddNote</servlet-name>
+<servlet-class>com.root.pkg.AddNote</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>AddNote</servlet-name>
+<url-pattern>/addnote</url-pattern>
+</servlet-mapping>
+</web-app>

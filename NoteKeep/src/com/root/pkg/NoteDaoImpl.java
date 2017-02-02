@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 import oracle.jdbc.OracleDriver;
 
@@ -15,6 +18,7 @@ public class NoteDaoImpl implements NoteDao {
 	Statement stmt;
 	Connection conn=null;
 	int st=0;
+	Notes note = new Notes();
 	@Override
 	public Connection getConnection(){
 		// TODO Auto-generated method stub
@@ -35,7 +39,7 @@ public class NoteDaoImpl implements NoteDao {
 	public int addNote(Notes n) {
 		// TODO Auto-generated method stub
 		try{
-			Connection conn = getConnection();
+			conn = getConnection();
 			String id="1";
 			String title=n.getTitle();
 			String content=n.getContent();
@@ -78,7 +82,20 @@ public class NoteDaoImpl implements NoteDao {
 	@Override
 	public List<Notes> getAllNotes() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Notes> noteList = new ArrayList<Notes>();
+		try{
+			conn = getConnection();
+			String query = "select * from notedata";
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()){
+				noteList.add(new Notes(rs.getString("title"),rs.getString("content"),rs.getString("status"))); 
+			}		
+			System.out.println(noteList);
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		return noteList;
 	}	
 
 }

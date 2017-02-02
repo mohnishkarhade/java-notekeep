@@ -10,7 +10,7 @@ public interface NoteDao {
 	public int addNote(Notes n);
 	public int updateNote(Notes n);
 	public int deleteNote(int id);
-	public Notes getNoteById(int id);
+	public Notes getNoteById(int id);	
 	public List<Notes> getAllNotes();
 
 }

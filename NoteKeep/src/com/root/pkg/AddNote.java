@@ -70,10 +70,10 @@ public class AddNote extends HttpServlet {
 		
 		int st = noteDao.addNote(note);
 		if(st>0){
-			out.print("<p style=\"color:green\"> Note Added.</p>");
+			out.print("<p class=\"alert alert-success text-center\"> Note Added.</p>");
 			request.getRequestDispatcher("index.html").include(request, response);
 		} else{
-			out.print("<p style=\"color:red\"> Sorry! Unable to save.</p>");
+			out.print("<p class=\"alert alert-danger text-center\"> Sorry! Unable to save.</p>");
 		}
 		out.close();
 	}

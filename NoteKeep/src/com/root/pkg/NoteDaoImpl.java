@@ -3,13 +3,16 @@ package com.root.pkg;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import oracle.jdbc.OracleDriver;
 
 public class NoteDaoImpl implements NoteDao {
-	PreparedStatement stmt;
+	PreparedStatement pstmt;
+	Statement stmt;
 	Connection conn=null;
 	int st=0;
 	@Override
@@ -38,13 +41,13 @@ public class NoteDaoImpl implements NoteDao {
 			String content=n.getContent();
 			String status=n.isStatus();
 			String query = "insert into notedata values(?,?,?,?)";					
-			stmt=conn.prepareStatement(query);
-			stmt.setString(1,id);
-			stmt.setString(2,title);
-			stmt.setString(3,content);
-			stmt.setString(4,status);
-			st = stmt.executeUpdate();
-			System.out.println(stmt);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1,id);
+			pstmt.setString(2,title);
+			pstmt.setString(3,content);
+			pstmt.setString(4,status);
+			st = pstmt.executeUpdate();
+			System.out.println(pstmt);
 			conn.close();
 			
 		} catch(SQLException e){
@@ -76,6 +79,6 @@ public class NoteDaoImpl implements NoteDao {
 	public List<Notes> getAllNotes() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}	
 
 }

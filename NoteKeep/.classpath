@@ -15,5 +15,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mohnish/Documents/NIIT/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mohnish/Documents/NIIT/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

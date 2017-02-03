@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,11 +43,11 @@ public class ViewNotes extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		List<Notes> notelist = noteDao.getAllNotes();
-		response.setContentType("application/json");
-		String json = new Gson().toJson(notelist);
-		response.getWriter().write(json);
-		out.println(json);
-		
+		System.out.println(notelist);
+		response.setContentType("text/html");		
+		request.setAttribute("notelist", notelist);
+		RequestDispatcher rd = request.getRequestDispatcher("viewnotes.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -54,7 +55,8 @@ public class ViewNotes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+			
 	}
 
 }

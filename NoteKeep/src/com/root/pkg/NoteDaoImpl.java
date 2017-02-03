@@ -82,16 +82,22 @@ public class NoteDaoImpl implements NoteDao {
 	@Override
 	public List<Notes> getAllNotes() {
 		// TODO Auto-generated method stub
-		ArrayList<Notes> noteList = new ArrayList<Notes>();
+		List<Notes> noteList = new ArrayList<Notes>();
 		try{
 			conn = getConnection();
 			String query = "select * from notedata";
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while(rs.next()){
-				noteList.add(new Notes(rs.getString("title"),rs.getString("content"),rs.getString("status"))); 
+				//noteList.add(new Notes(rs.getInt("id"),rs.getString("title"),rs.getString("content"),rs.getString("status")));
+				Notes note= new Notes();
+				note.setNoteId(rs.getInt("id"));
+				note.setTitle(rs.getString("title"));
+				note.setContent(rs.getString("content"));
+				note.setStatus(rs.getString("status"));
+				noteList.add(note);
 			}		
-			System.out.println(noteList);
+			System.out.println("ArrayList of object Notes: "+noteList);
 		} catch(SQLException e){
 			e.printStackTrace();
 		}

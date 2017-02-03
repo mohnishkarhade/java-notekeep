@@ -8,8 +8,8 @@ public class Notes {
 	private String status;
 	
 	public Notes(){}
-	public Notes(String title, String content, String status) {
-		
+	public Notes(int noteId, String title, String content, String status) {
+		this.noteId = noteId;
 		this.title = title;
 		this.content = content;
 		this.status = status;

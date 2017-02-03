@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+    
+    
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,26 +43,30 @@
 				</ul>
 				<h2>All Notes</h2>				
 				
-				<table class="table table-hover">
+				<table class="table table-hover table-bordered">
 					<thead>
-						<tr>							
+						<tr>
+							<th>Id</th>							
 							<th>Title</th>
 							<th>Content</th>
 							<th>Status</th>
-							<th></th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td id="title"></td>
-							<td id="content"></td>
-							<td id="status"></td>							
-							<td>
-								<a href="" class="btn btn-info btn-xs">View</a>&nbsp;
-								<a href="" class="btn btn-success btn-xs">Edit</a>&nbsp;
-								<a href="" class="btn btn-danger btn-xs">Delete</a>&nbsp;
-							</td>
-						</tr>
+						<c:forEach items="${notelist}" var="record">
+							<tr>
+								<td>${record.getNoteId() }</td>
+								<td>${record.getTitle() }</td>
+								<td>${record.getContent() }</td>
+								<td>${record.isStatus() }</td>
+								<td>
+									<a href="" class="btn btn-info btn-xs">View</a>&nbsp;
+									<a href="" class="btn btn-success btn-xs">Edit</a>&nbsp;
+									<a href="" class="btn btn-danger btn-xs">Delete</a>&nbsp;
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>

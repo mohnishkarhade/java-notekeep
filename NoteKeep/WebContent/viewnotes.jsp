@@ -31,8 +31,8 @@
   <body>    
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
 				<h1 class=" text-center">Welcome to <span class="text-info"><strong>Note Keep</strong></span></h1>
 				<hr>
 				<ul class="nav nav-pills nav-justified">
@@ -61,7 +61,7 @@
 								<td>${record.getContent() }</td>
 								<td>${record.isStatus() }</td>
 								<td>
-									<a href="" class="btn btn-info btn-xs">View</a>&nbsp;
+									<a href="notedetail?id=${record.getNoteId()}" class="btn btn-info btn-xs">View</a>&nbsp;
 									<a href="" class="btn btn-success btn-xs">Edit</a>&nbsp;
 									<a href="" class="btn btn-danger btn-xs">Delete</a>&nbsp;
 								</td>
@@ -70,7 +70,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-sm-3"></div>
+			<div class="col-sm-2"></div>
 		</div>
 	</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

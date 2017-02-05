@@ -16,9 +16,10 @@ import oracle.jdbc.OracleDriver;
 public class NoteDaoImpl implements NoteDao {
 	PreparedStatement pstmt;
 	Statement stmt;
+	ResultSet rs;
 	Connection conn=null;
 	int st=0;
-	Notes note = new Notes();
+	
 	@Override
 	public Connection getConnection(){
 		// TODO Auto-generated method stub
@@ -27,7 +28,7 @@ public class NoteDaoImpl implements NoteDao {
 			OracleDriver driver = new OracleDriver();
 			DriverManager.registerDriver(driver);		
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "root");
-			System.out.println("Connected" + conn);
+			System.out.println("Connected: " + conn.toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,7 +40,7 @@ public class NoteDaoImpl implements NoteDao {
 	public int addNote(Notes n) {
 		// TODO Auto-generated method stub
 		try{
-			conn = getConnection();
+			getConnection();
 			String id="1";
 			String title=n.getTitle();
 			String content=n.getContent();
@@ -70,13 +71,43 @@ public class NoteDaoImpl implements NoteDao {
 	@Override
 	public int deleteNote(int id) {
 		// TODO Auto-generated method stub
-		return 0;
+		int flag=0;
+		try{			
+			getConnection();
+			String query = "delete from notedata where id="+id;
+			stmt = conn.createStatement();
+			flag = stmt.executeUpdate(query);			
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		}	
+		return flag;
 	}
 
 	@Override
-	public Notes getNoteById(int id) {
+	public List<Notes> getNoteById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Notes> noteList = new ArrayList<Notes>();
+		try{
+			
+			getConnection();
+			String query = "select * from notedata where id="+id;
+			stmt=conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()){
+				Notes note = new Notes();
+				note.setNoteId(rs.getInt("id"));
+				note.setTitle(rs.getString("title"));
+				note.setContent(rs.getString("content"));
+				note.setStatus(rs.getString("status"));
+				
+				noteList.add(note);
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}		
+		return noteList;
 	}
 
 	@Override
@@ -87,7 +118,7 @@ public class NoteDaoImpl implements NoteDao {
 			conn = getConnection();
 			String query = "select * from notedata";
 			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			rs = stmt.executeQuery(query);
 			while(rs.next()){
 				//noteList.add(new Notes(rs.getInt("id"),rs.getString("title"),rs.getString("content"),rs.getString("status")));
 				Notes note= new Notes();
@@ -96,8 +127,7 @@ public class NoteDaoImpl implements NoteDao {
 				note.setContent(rs.getString("content"));
 				note.setStatus(rs.getString("status"));
 				noteList.add(note);
-			}		
-			System.out.println("ArrayList of object Notes: "+noteList);
+			}					
 		} catch(SQLException e){
 			e.printStackTrace();
 		}

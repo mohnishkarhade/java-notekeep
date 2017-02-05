@@ -18,29 +18,7 @@ public class AddNote extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	NoteDao noteDao = new NoteDaoImpl();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddNote() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-		noteDao.getConnection();
-	}
-
-	/**
-	 * @see Servlet#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub		
-	}
+           
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

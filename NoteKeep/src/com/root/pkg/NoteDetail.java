@@ -1,9 +1,6 @@
 package com.root.pkg;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,34 +10,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 
 /**
- * Servlet implementation class ViewNotes
+ * Servlet implementation class NoteDetail
  */
-@WebServlet("/ViewNotes")
-public class ViewNotes extends HttpServlet {
+@WebServlet("/NoteDetail")
+public class NoteDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	Notes note = new Notes();
 	NoteDao noteDao = new NoteDaoImpl();
-    Notes note = new Notes();
-    Statement stmt;
-    Connection conn;    
-   
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter out = response.getWriter();
-		
-		List<Notes> notelist = noteDao.getAllNotes();		
-		response.setContentType("text/html");		
-		request.setAttribute("notelist", notelist);
-		RequestDispatcher rd = request.getRequestDispatcher("viewnotes.jsp");
-		rd.forward(request, response);
+		response.setContentType("text/html");
+		String tempId=request.getParameter("id");
+		int id = Integer.parseInt(tempId);
+		List<Notes> noteList= noteDao.getNoteById(id);
+		request.setAttribute("notedetail", noteList);
+		RequestDispatcher rd = request.getRequestDispatcher("notedetail.jsp");
+		rd.forward(request, response);			
 	}
 
 	/**
@@ -48,8 +40,7 @@ public class ViewNotes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-			
+		doGet(request, response);
 	}
 
 }

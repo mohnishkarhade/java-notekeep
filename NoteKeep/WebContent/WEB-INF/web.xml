@@ -16,7 +16,6 @@
     <servlet-name>ViewNotes</servlet-name>
     <url-pattern>/viewnotes</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>SearchNote</servlet-name>
     <servlet-class>com.root.pkg.SearchNote</servlet-class>
@@ -24,5 +23,13 @@
   <servlet-mapping>
     <servlet-name>SearchNote</servlet-name>
     <url-pattern>/searchnote</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>NoteDetail</servlet-name>
+    <servlet-class>com.root.pkg.NoteDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NoteDetail</servlet-name>
+    <url-pattern>/notedetail</url-pattern>
   </servlet-mapping>
 </web-app>

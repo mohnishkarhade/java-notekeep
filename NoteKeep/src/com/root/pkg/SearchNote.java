@@ -67,7 +67,7 @@ public class SearchNote extends HttpServlet {
 				
 			} else{
 				out.println("<p class=\"alert alert-danger\">Result not found</p>");
-				request.getRequestDispatcher("index.html").include(request, response);
+				request.getRequestDispatcher("index.jsp").include(request, response);
 			}
 			
 		} catch(SQLException e){

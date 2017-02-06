@@ -32,4 +32,12 @@
     <servlet-name>NoteDetail</servlet-name>
     <url-pattern>/notedetail</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteNote</servlet-name>
+    <servlet-class>com.root.pkg.DeleteNote</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteNote</servlet-name>
+    <url-pattern>/deletenote</url-pattern>
+  </servlet-mapping>
 </web-app>

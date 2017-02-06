@@ -6,7 +6,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +40,7 @@ public class SearchNote extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("index.jsp").include(request, response);
 	}
 
 	/**
@@ -44,31 +48,35 @@ public class SearchNote extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);		
+		//doGet(request, response);		
 		
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		String searchstring = request.getParameter("searchstring");
-		Notes note = new Notes();
+		
+		List<Notes> listnote = new ArrayList<Notes>();
 		try{
 			conn = noteDao.getConnection();
-			String query = "select * from notedata where title="+"'"+searchstring+"'";
+			String query = "select * from notedata where title like "+"'%"+searchstring+"%'";
+			System.out.println(query);
 			stmt = conn.createStatement();						
 			ResultSet rs = stmt.executeQuery(query);
 			
 			if(rs.next()){	
-				out.println("<table class=\"table\">");
-				out.println(
-						"<tr><td>"+rs.getString("title")+"</td><td>"
-						+rs.getString("content")+"</td><td>"
-						+rs.getString("status")+"</tr>"
-						);	
-				out.println("</table>");
+				while(rs.next()){
+					Notes note = new Notes();
+					note.setNoteId(rs.getInt("id"));
+					note.setTitle(rs.getString("title"));
+					listnote.add(note);
+				}
+				request.setAttribute("listnote", listnote);
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
 				
 			} else{
 				out.println("<p class=\"alert alert-danger\">Result not found</p>");
 				request.getRequestDispatcher("index.jsp").include(request, response);
-			}
+			}			
 			
 		} catch(SQLException e){
 			e.printStackTrace();

@@ -43,7 +43,7 @@
 								<tr>
 									<td>${record.getNoteId() }</td>
 									<td>${record.getTitle() }</td>
-									<td>${record.getContent().substring(0,10) }...</td>
+									<td>${record.getContent().substring(0,5) }...</td>
 									<td>${record.isStatus() }</td>
 									<td><a href="notedetail?id=${record.getNoteId()}"
 										class="btn btn-info btn-xs">View</a>&nbsp; <a href=""

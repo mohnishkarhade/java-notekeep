@@ -22,7 +22,7 @@
   					<li role="presentation"><a href="about">About</a></li>
 				</ul>
 				<br/>
-				<form action="searchnote" class="" method="post">
+				<form action="searchnote" class="well well-sm" method="post">
 					<div class="input-group">
 						<input type="text" class="form-control"
 							placeholder="Search Note..." name="searchstring"> <span

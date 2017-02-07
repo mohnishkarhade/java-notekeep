@@ -9,8 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import oracle.jdbc.OracleDriver;
 
 public class NoteDaoImpl implements NoteDao {

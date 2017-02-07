@@ -36,7 +36,7 @@
 						<input type="radio" name="status" value="Not done" required> Not Done
 					</div>
 					<input type="submit" class="btn btn-success" value="Add">
-					<input type="reset" class="btn btn-danger" value="Cancel">
+					<a href="index.jsp" class="btn btn-danger">Cancel</a>
 				</form>
 			</div>
 			<div class="col-sm-3"></div>

@@ -40,4 +40,12 @@
     <servlet-name>DeleteNote</servlet-name>
     <url-pattern>/deletenote</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>UpdateNote</servlet-name>
+    <servlet-class>com.root.pkg.UpdateNote</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateNote</servlet-name>
+    <url-pattern>/updatenote</url-pattern>
+  </servlet-mapping>
 </web-app>

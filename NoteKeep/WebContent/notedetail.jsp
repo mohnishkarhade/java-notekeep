@@ -47,7 +47,7 @@
 							</div>
 						</div>
 						<div class="panel-footer">
-							<a href="" class="btn btn-success btn-xs">Edit</a>&nbsp;
+							<a href="updatenote?id=${record.getNoteId()}" class="btn btn-success btn-xs">Edit</a>&nbsp;
 							<a href="deletenote?id=${record.getNoteId()}" class="btn btn-danger btn-xs">Delete</a>&nbsp;
 						</div>
 					</div>

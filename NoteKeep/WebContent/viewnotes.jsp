@@ -46,7 +46,7 @@
 									<td>${record.getContent().substring(0,5) }...</td>
 									<td>${record.isStatus() }</td>
 									<td><a href="notedetail?id=${record.getNoteId()}"
-										class="btn btn-info btn-xs">View</a>&nbsp; <a href=""
+										class="btn btn-info btn-xs">View</a>&nbsp; <a href="updatenote?id=${record.getNoteId()}"
 										class="btn btn-success btn-xs">Edit</a>&nbsp; <a
 										href="deletenote?id=${record.getNoteId()}"
 										class="btn btn-danger btn-xs">Delete</a>&nbsp;</td>

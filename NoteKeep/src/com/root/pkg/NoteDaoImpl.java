@@ -65,7 +65,25 @@ public class NoteDaoImpl implements NoteDao {
 	@Override
 	public int updateNote(Notes n) {
 		// TODO Auto-generated method stub
-		return 0;
+		try{
+			getConnection();
+			
+			int id=n.getNoteId();
+			String title=n.getTitle();
+			String content=n.getContent();
+			String status=n.isStatus();
+			String query="update notedata set title=?,content=?,status=? where id="+id;
+			System.out.println(query);
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, status);
+			st=pstmt.executeUpdate();			
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		return st;
 	}
 
 	@Override
